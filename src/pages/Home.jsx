@@ -1,0 +1,25 @@
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import { getTrendsMovies } from '../components/services/api';
+import ListMovies from 'components/ListMovies/ListMovies';
+
+function Home() {
+    const [trends, setTrends] = useState(null);
+
+    useEffect(() => {
+        getTrendsMovies().then(setTrends);
+    }, []);
+    return (
+        <>
+            <h2>Trading today</h2>
+            {<ListMovies list={trends} />}
+        </>
+    );
+}
+
+Home.propTypes = {
+    list: PropTypes.arrayOf(PropTypes.object),
+};
+
+export default Home;
