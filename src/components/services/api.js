@@ -1,43 +1,62 @@
 import axios from 'axios';
-import { BASE_URL, API_KEY, LANG } from './constans';
+import { BASE_URL, LANG, TOKEN } from './constans';
+
+
+axios.defaults.baseURL = BASE_URL;
+axios.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
 
 export async function getTrendsMovies() {
-    const response = await axios(
-        `${BASE_URL}trending/all/day?api_key=${API_KEY}`
-    );
+    const response = await axios(`trending/all/day`);
     return response.data.results;
 }
 
 export async function getDetailsMovie(id) {
-    const response = await axios(
-        `${BASE_URL}movie/${id}${API_KEY}${LANG}`);
+    const response = await axios(`movie/${id}`, {
+        params:
+        {
+            language: LANG,
+            page: 1,
+        }
+    });
     return response.data;
 }
 
 export async function getCreditsMovie(id) {
     const response = await axios(
-        `${BASE_URL}movie/${id}/credits${API_KEY}${LANG}`
-        );
+        `movie/${id}/credits`, {
+        params:
+        {
+            language: LANG,
+        }
+    }
+    );
     return response.data.cast;
 }
 
 export async function getReviewMovie(id) {
     const response = await axios(
-        `${BASE_URL}movie/${id}/reviews${API_KEY}${LANG}`
-        );
+        `movie/${id}/reviews`, {
+        params:
+        {
+            language: LANG,
+            page: 1,
+        }
+    }
+    );
     return response.data.results;
 }
 
 export async function getMovies(q) {
     const response = await axios(
-        `${BASE_URL}search/keyword`, {params:
+        `search/keyword`, {
+        params:
         {
-            api_key: API_KEY,
             query: q,
             page: 1,
-        }}
-    );    
-    return response.data.results;
+        }
     }
+    );
+    return response.data.results;
+}
 // -url 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
 // 'https://api.themoviedb.org/3/search/keyword?query=batman&page=1
