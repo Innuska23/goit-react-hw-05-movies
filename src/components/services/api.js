@@ -30,8 +30,14 @@ export async function getReviewMovie(id) {
 
 export async function getMovies(q) {
     const response = await axios(
-        `${BASE_URL}search/movie${API_KEY}${LANG}'/&query=${q}&page=1&include_adult=false'`
-    );
-
+        `${BASE_URL}search/keyword`, {params:
+        {
+            api_key: API_KEY,
+            query: q,
+            page: 1,
+        }}
+    );    
     return response.data.results;
-}
+    }
+// -url 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
+// 'https://api.themoviedb.org/3/search/keyword?query=batman&page=1
