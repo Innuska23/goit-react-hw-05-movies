@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import './App.module.css'
+import Layout from "./Layout/Layout";
 // import Movies from "path/to/pages/Movies";
 // import MovieDetails from "path/to/pages/MovieDetails";
 // import Cast from "path/to/components/Cast/Cast";
@@ -8,20 +9,16 @@ import './App.module.css'
 
 export const App = () => {
   return (
-    <div>
-    <nav>
-      {/* <Link to="/">Home</Link>
-      <Link to="/movies">Movies</Link>
-      <Link to="/movieDetails">MovieDetails</Link> */}
-    </nav>
       <Routes>
-        <Route path="/" element={<Home/>} />
+      <Route path="/" element={<Layout />}>
+        <Route  index element={<Home/>} />
         {/* <Route path="/movies" element={<Movies />} />
         <Route path="/movieDetails/:id" element={<MovieDetails />}>
           <Route path="/cast" element={<Cast />} />
           <Route path="/reviews" element={<Reviews />} />
         </Route> */}
-      </Routes>
-    </div>
+        <Route path="*" element={<Home />} />
+      </Route>
+    </Routes>
   );
-};
+}
