@@ -20,7 +20,7 @@ export const NavLinkStyled = styled(NavLink)`
     margin-right: 30px;
     }
     &.active,
-    &:focus {
+    &:hover {
     color: red;
     }
     &:hover {

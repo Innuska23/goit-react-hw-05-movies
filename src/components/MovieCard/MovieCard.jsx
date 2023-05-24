@@ -1,7 +1,8 @@
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState, Suspense, useRef } from 'react';
 
 import { getDetailsMovie } from 'components/services/api';
+import { CardUl, MovieArticle, LinkMovies, MovieAbout } from './MoviesCard.styled';
 
 const MovieCard = () => {
     const [details, setDetails] = useState(null);
@@ -12,10 +13,15 @@ const MovieCard = () => {
         release_date = '',
         genres = '',
         overview = '',
+        vote_average = '',
     } = details ?? {};
 
     const location = useLocation();
     const comeBack = useRef(location.state?.from || '/');
+
+    const userScore = vote_average
+    ? `${(vote_average * 10).toFixed(0)}%`
+    : 'Not rated yet';
 
     const { id } = useParams();
     useEffect(() => {
@@ -27,32 +33,32 @@ const MovieCard = () => {
     ) : (
         <div>
             <p>
-                <Link to={comeBack.current}>Go back</Link>
+                <LinkMovies to={comeBack.current}>Go back</LinkMovies>
             </p>
-            <article className="card">
+            <MovieArticle className="card">
                 <img width={200} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={name}></img>
                 <div className="subscribe">
                     <h2>
                         {original_title}
                         <span> ({release_date.substring(0, 4)})</span>
                     </h2>
-                    <h3>
-                        <span> {genres.map(({ name }) => name).join(', ')}</span>
+                        <h3>User Score: <MovieAbout>{userScore} </MovieAbout></h3>
+                        <h3>Genres: <MovieAbout> {genres.map(({ name }) => name).join(', ')}</MovieAbout>
                     </h3>
                     <h3>Overview:</h3>
                     <p>{overview}</p>
                 </div>
-            </article>
+            </MovieArticle>
             <hr />
             <p>Additional information:</p>
-            <ul>
+            <CardUl>
                 <li>
-                    <Link to={'cast'}>Cast</Link>
+                    <LinkMovies to={'cast'}>Cast</LinkMovies>
                 </li>
                 <li>
-                    <Link to={'reviews'}>Reviews</Link>
+                    <LinkMovies to={'reviews'}>Reviews</LinkMovies>
                 </li>
-            </ul>
+            </CardUl>
             <Suspense>
                 <Outlet />
             </Suspense>
