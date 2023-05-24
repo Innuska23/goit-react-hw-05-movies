@@ -15,6 +15,7 @@ function Reviews() {
 
     return (
         <ReviewWrap>
+            <hr />
             {/* <h3>Reviews:</h3> */}
             <ReviewUL>
                 {review?.length === 0 ? (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { getMovies } from 'components/services/api';
 import ListMovies from 'components/ListMovies/ListMovies';
+import { MoviesInput } from './pages.styled';
 
 const Movies = () => {
     const [movies, setMovies] = useState(null);
@@ -29,7 +30,7 @@ const Movies = () => {
     return (
         <form onSubmit={onSearch}>
             <label>
-                <input name="q" type="text" />
+                <MoviesInput name="q" type="text" />
             </label>
             <button type="submit">Search</button>
             {movies?.length > 0 && (
