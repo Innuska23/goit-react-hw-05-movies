@@ -15,7 +15,6 @@ function Cast() {
     return (
         { casts } && (
             <div>
-                <h2>Cast:</h2>
                 <ul>
                     {casts?.length === 0 ? (
                         <p>We don't have any casts for this movies</p>
