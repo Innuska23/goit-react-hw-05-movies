@@ -38,7 +38,7 @@ const MovieCard = () => {
                 <LinkMovies to={comeBack.current}>Go back</LinkMovies>
             </p>
             <MovieArticle className="card">
-                <img width={200} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={name}></img>
+                <img width={200} height={300} src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='} alt={name}/>
                 <div className="subscribe">
                     <h2>
                         {original_title}
