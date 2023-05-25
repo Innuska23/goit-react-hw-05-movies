@@ -3,6 +3,7 @@ import { useEffect, useState, Suspense, useRef } from 'react';
 
 import { getDetailsMovie } from 'components/services/api';
 import { CardUl, MovieArticle, LinkMovies, MovieAbout } from './MoviesCard.styled';
+import Loader from 'components/Loader/Loader';
 
 const MovieCard = () => {
     const [details, setDetails] = useState(null);
@@ -31,6 +32,7 @@ const MovieCard = () => {
     return !details ? (
         <p>Don't find this movies</p>
     ) : (
+        
         <div>
             <p>
                 <LinkMovies to={comeBack.current}>Go back</LinkMovies>
@@ -59,7 +61,7 @@ const MovieCard = () => {
                     <LinkMovies to={'reviews'}>Reviews</LinkMovies>
                 </li>
             </CardUl>
-            <Suspense>
+            <Suspense fallback={<Loader/>}>
                 <Outlet />
             </Suspense>
         </div>
