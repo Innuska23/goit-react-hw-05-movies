@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import {NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { BsArrowLeftShort } from 'react-icons/bs';
 
 export const MovieArticle = styled.article`
     display: flex;
@@ -17,8 +18,12 @@ export const MovieAbout = styled.span`
     font-weight: 300;
 `;
 export const LinkMovies = styled(NavLink)`
+    display: flex;
     color: grey;
     font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px pink;
+    align-items: center;
     &.active,
     &:hover {
         color: red;
@@ -28,3 +33,8 @@ export const LinkMovies = styled(NavLink)`
     }
 `;
 
+export const LeftIcon = styled(BsArrowLeftShort)`
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+`;

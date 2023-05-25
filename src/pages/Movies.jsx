@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { getMovies } from 'components/services/api';
 import ListMovies from 'components/ListMovies/ListMovies';
-import { MoviesInput } from './pages.styled';
+import { MoviesInput, PagesStyle, SeachButton, SeachtIcon } from './pages.styled';
 
-const Movies = () => {
+const Movies = (onSubmit) => {
     const [movies, setMovies] = useState(null);
     const [query, setQuery] = useSearchParams();
 
@@ -24,22 +24,23 @@ const Movies = () => {
             query: e.currentTarget.elements.q.value,
         });
         e.currentTarget.reset();
-
     }
 
     return (
-        <form onSubmit={onSearch}>
-            <label>
-                <MoviesInput name="q" type="text" />
-            </label>
-            <button type="submit">Search</button>
-            {movies?.length > 0 && (
-                <>
-                    <h2>List movies</h2>
-                    <ListMovies list={movies} />
-                </>
-            )}
-        </form>
+        <PagesStyle>
+            <form onSubmit={onSearch}>
+                <label>
+                    <MoviesInput name="q" type="text" />
+                </label>
+                <SeachButton type="submit"><SeachtIcon /></SeachButton>
+                {movies?.length > 0 && (
+                    <>
+                        <h2>List movies</h2>
+                        <ListMovies list={movies} />
+                    </>
+                )}
+            </form>
+        </PagesStyle>
     );
 };
 
