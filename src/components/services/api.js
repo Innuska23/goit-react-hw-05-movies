@@ -58,5 +58,3 @@ export async function getMovies(q) {
     );
     return response.data.results;
 }
-// -url 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1'
-// 'https://api.themoviedb.org/3/search/keyword?query=batman&page=1

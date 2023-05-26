@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import PropTypes from 'prop-types';
 
 import { getCreditsMovie } from 'components/services/api';
-import { CastImg, CastInfo, CastLi, CastText, CastUl, CastWraper } from './Cast.styled';
+import { CastImg, CastInfo, CastLi, CastSent, CastText, CastUl, CastWraper } from './Cast.styled';
 
 function Cast() {
     const { id } = useParams();
     const [casts, setCasts] = useState(null);
+
     useEffect(() => {
         getCreditsMovie(id)?.then(setCasts);
     }, [id]);
@@ -18,7 +18,7 @@ function Cast() {
             <CastWraper>
                 <CastUl>
                     {casts?.length === 0 ? (
-                        <p>We don't have any casts for this movies</p>
+                        <CastSent>We don't have any casts for this movies</CastSent>
                     ) : (
                         casts?.map(({ profile_path, name, character, cast_id }) => {
                             return (

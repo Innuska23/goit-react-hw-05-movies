@@ -2,7 +2,7 @@ import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState, Suspense, useRef } from 'react';
 
 import { getDetailsMovie } from 'components/services/api';
-import { CardUl, MovieArticle, LinkMovies, MovieAbout, LeftIcon, CardMovieImg, СardMovieText, СardInfoMovie} from './MoviesCard.styled';
+import { CardUl, MovieArticle, LinkMovies, MovieAbout, LeftIcon, CardMovieImg, СardMovieText, СardInfoMovie, MovieBack, MovieWraper, MovieInfo, MovieName } from './MoviesCard.styled';
 import Loader from 'components/Loader/Loader';
 
 const MovieCard = () => {
@@ -25,32 +25,35 @@ const MovieCard = () => {
         : 'Not rated yet';
 
     const { id } = useParams();
+
     useEffect(() => {
         getDetailsMovie(id).then(setDetails);
     }, [id]);
 
-    return !details ? (
-        <СardMovieText>Don't find this movies</СardMovieText>
-    ) : (
+    if (!details) {
 
-        <div>
-            <p>
+        return <СardMovieText>Don't find this movies</СardMovieText>
+    }
+
+    return (
+        <MovieWraper>
+            <MovieBack>
                 <LinkMovies to={comeBack.current}>
-                        <LeftIcon/> 
-                            Go back 
+                    <LeftIcon />
+                    Go back
                 </LinkMovies>
-            </p>
+            </MovieBack>
             <MovieArticle>
                 <CardMovieImg width={200} height={300} src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='} alt={name} />
                 <div>
-                    <h2>
+                    <MovieName>
                         {original_title}
                         <span> ({release_date.substring(0, 4)})</span>
-                    </h2>
-                    <h3>User Score: <MovieAbout>{userScore} </MovieAbout></h3>
-                    <h3>Genres: <MovieAbout> {genres.map(({ name }) => name).join(', ')}</MovieAbout>
-                    </h3>
-                    <h3>Overview:</h3>
+                    </MovieName>
+                    <MovieInfo>User Score: <MovieAbout>{userScore} </MovieAbout></MovieInfo>
+                    <MovieInfo>Genres: <MovieAbout> {genres.map(({ name }) => name).join(', ')}</MovieAbout>
+                    </MovieInfo>
+                    <MovieInfo>Overview:</MovieInfo>
                     <p>{overview}</p>
                 </div>
             </MovieArticle>
@@ -64,11 +67,11 @@ const MovieCard = () => {
                     <LinkMovies to={'reviews'}>Reviews</LinkMovies>
                 </li>
             </CardUl>
+            <hr />
             <Suspense fallback={<Loader />}>
                 <Outlet />
             </Suspense>
-        </div>
-    );
+        </MovieWraper>)
 }
 
 export default MovieCard;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSearchParams } from 'react-router-dom';
 import { getMovies } from 'components/services/api';
 import ListMovies from 'components/ListMovies/ListMovies';
-import { MoviesInput, PagesStyle, SeachButton, SeachText, SeachtIcon } from './pages.styled';
+import { MovieList, MoviesInput, MoviesLabel, PagesStyle, SeachButton, SeachText, SeachtIcon } from './pages.styled';
 
 const Movies = (onSubmit) => {
     const [movies, setMovies] = useState(null);
@@ -18,10 +18,10 @@ const Movies = (onSubmit) => {
         }
     }, [query, setQuery]);
 
-    function onSearch(e) {
+    function handleSubmit(e) {
         e.preventDefault();
-        if (e.currentTarget.elements.q.value === ''){
-            alert ('Please enter a word to search for')
+        if (e.currentTarget.elements.q.value === '') {
+            alert('Please enter a word to search for')
         }
         setQuery({
             query: e.currentTarget.elements.q.value,
@@ -31,17 +31,17 @@ const Movies = (onSubmit) => {
 
     return (
         <PagesStyle>
-            <form onSubmit={onSearch}>
-                <label>
-                    <MoviesInput name="q" type="text" />
-                </label>
-                <SeachButton type="submit"><SeachtIcon /></SeachButton>
+            <form onSubmit={handleSubmit}>
+                <MoviesLabel>
+                    <MoviesInput name="q" type="text" placeholder="Search..." autoComplete= "off" />
+                    <SeachButton type="submit"><SeachtIcon /></SeachButton>
+                </MoviesLabel>
                 {movies && movies.length === 0 && (
                     <SeachText>Nothing was found for this query.</SeachText>
                 )}
                 {movies?.length > 0 && (
                     <>
-                        <h2>List movies</h2>
+                        <MovieList>List movies</MovieList>
                         <ListMovies list={movies} />
                     </>
                 )}

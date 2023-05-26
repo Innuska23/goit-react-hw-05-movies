@@ -14,6 +14,6 @@ export const ListLi = styled.li`
     cursor: pointer;
     &:hover{
         text-decoration: underline;
-        text-decoration-color: gray;
+        text-decoration-color: #FED36A;
     }
 `

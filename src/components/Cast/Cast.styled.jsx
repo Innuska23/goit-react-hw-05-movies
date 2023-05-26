@@ -11,6 +11,7 @@ export const CastUl = styled.ul`
     gap: 40px;
     padding: 0;
 `;
+
 export const CastLi = styled.li`
     margin-bottom: 20px;
     word-wrap: break-word;
@@ -24,10 +25,15 @@ export const CastInfo = styled.div`
 export const CastText = styled.p`
     text-align: center;
     align-items: center; 
-    word-wrap: break-word;`
-    ;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+`;
 
 export const CastImg = styled.img`
     border-radius: 5px;
     filter: drop-shadow(9px 5px 10px #000);
-    `;
+`;
+
+    export const CastSent = styled.p`
+    color: #FED36A
+`;

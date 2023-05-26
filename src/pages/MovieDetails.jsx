@@ -1,10 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ContainerDetails, PagesStyle } from './pages.styled';
-import MovieCard from 'components/MovieCard/MovieCard';
 
+import MovieCard from 'components/MovieCard/MovieCard';
 
 function MovieDetails() {
     const location = useLocation();
+
     return (
         <PagesStyle>
             <main>
@@ -17,4 +18,5 @@ function MovieDetails() {
         </PagesStyle>
     );
 };
+
 export default MovieDetails;

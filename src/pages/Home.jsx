@@ -11,6 +11,7 @@ function Home() {
     useEffect(() => {
         getTrendsMovies().then(setTrends);
     }, []);
+
     return (
         <PagesStyle>
             <h2>Trading today</h2>
