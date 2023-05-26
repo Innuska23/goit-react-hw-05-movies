@@ -42,3 +42,15 @@ export const CardMovieImg = styled.img`
 border-radius: 5px;
 filter: drop-shadow(9px 5px 10px #000);
 `;
+
+export const СardMovieText = styled.p`
+    color: gray;
+    font-weight: 700;
+    text-transform: uppercase;
+`;
+
+export const СardInfoMovie = styled.p`
+    font-weight: 700;
+    text-transform: uppercase;
+`;
+

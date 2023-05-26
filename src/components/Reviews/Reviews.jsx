@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getReviewMovie } from 'components/services/api';
 
-import { ReviewText, ReviewUL, ReviewWrap } from './Reviews.styled';
+import { ReviewInfo, ReviewText, ReviewUL, ReviewWrap } from './Reviews.styled';
 
 function Reviews() {
     const { id } = useParams();
@@ -18,7 +18,7 @@ function Reviews() {
             <hr />
             <ReviewUL>
                 {review?.length === 0 ? (
-                    <p>We don't have any reviews for this movies</p>
+                    <ReviewInfo>We don't have any reviews for this movies</ReviewInfo>
                 ) : (
                     review?.map(({ author, content, id }) => (
                         <ReviewText key={id}>

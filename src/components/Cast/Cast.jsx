@@ -22,7 +22,7 @@ function Cast() {
                     ) : (
                         casts?.map(({ profile_path, name, character, cast_id }) => {
                             return (
-                                <CastLi className="thumb-cast" key={cast_id}>
+                                <CastLi key={cast_id}>
                                     <CastImg width={200} height={300} src={profile_path ? `https://image.tmdb.org/t/p/w500/${profile_path}` : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='} alt={name} />
                                     <br />
                                     <CastInfo>

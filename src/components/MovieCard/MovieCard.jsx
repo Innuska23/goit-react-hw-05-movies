@@ -2,7 +2,7 @@ import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState, Suspense, useRef } from 'react';
 
 import { getDetailsMovie } from 'components/services/api';
-import { CardUl, MovieArticle, LinkMovies, MovieAbout, LeftIcon, CardMovieImg } from './MoviesCard.styled';
+import { CardUl, MovieArticle, LinkMovies, MovieAbout, LeftIcon, CardMovieImg, СardMovieText, СardInfoMovie} from './MoviesCard.styled';
 import Loader from 'components/Loader/Loader';
 
 const MovieCard = () => {
@@ -30,7 +30,7 @@ const MovieCard = () => {
     }, [id]);
 
     return !details ? (
-        <p>Don't find this movies</p>
+        <СardMovieText>Don't find this movies</СardMovieText>
     ) : (
 
         <div>
@@ -40,9 +40,9 @@ const MovieCard = () => {
                             Go back 
                 </LinkMovies>
             </p>
-            <MovieArticle className="card">
+            <MovieArticle>
                 <CardMovieImg width={200} height={300} src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM='} alt={name} />
-                <div className="subscribe">
+                <div>
                     <h2>
                         {original_title}
                         <span> ({release_date.substring(0, 4)})</span>
@@ -55,7 +55,7 @@ const MovieCard = () => {
                 </div>
             </MovieArticle>
             <hr />
-            <p>Additional information:</p>
+            <СardInfoMovie>Additional information:</СardInfoMovie>
             <CardUl>
                 <li>
                     <LinkMovies to={'cast'}>Cast</LinkMovies>
