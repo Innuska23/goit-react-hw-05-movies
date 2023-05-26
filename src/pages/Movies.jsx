@@ -4,14 +4,19 @@ import { useSearchParams } from 'react-router-dom';
 import { getMovies } from 'components/services/api';
 import ListMovies from 'components/ListMovies/ListMovies';
 import { MovieList, MoviesInput, MoviesLabel, PagesStyle, SeachButton, SeachText, SeachtIcon } from './pages.styled';
+import Loader from 'components/Loader/Loader';
 
-const Movies = (onSubmit) => {
+const Movies = () => {
     const [movies, setMovies] = useState(null);
     const [query, setQuery] = useSearchParams();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const strQuery = query.get('query');
-        if (strQuery) getMovies(strQuery).then(setMovies);
+        if (strQuery) {
+            setIsLoading(true)
+            getMovies(strQuery).then(setMovies).finally(() => setIsLoading(false));
+        };
         if (!strQuery) {
             setMovies(null);
             setQuery({});
@@ -33,12 +38,15 @@ const Movies = (onSubmit) => {
         <PagesStyle>
             <form onSubmit={handleSubmit}>
                 <MoviesLabel>
-                    <MoviesInput name="q" type="text" placeholder="Search..." autoComplete= "off" />
+                    <MoviesInput name="q" type="text" placeholder="Search..." autoComplete="off" />
                     <SeachButton type="submit"><SeachtIcon /></SeachButton>
                 </MoviesLabel>
                 {movies && movies.length === 0 && (
                     <SeachText>Nothing was found for this query.</SeachText>
                 )}
+
+                {isLoading && <Loader />}
+
                 {movies?.length > 0 && (
                     <>
                         <MovieList>List movies</MovieList>
