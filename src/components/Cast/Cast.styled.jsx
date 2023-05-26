@@ -26,3 +26,8 @@ export const CastText = styled.p`
     align-items: center; 
     word-wrap: break-word;`
     ;
+
+export const CastImg = styled.img`
+    border-radius: 5px;
+    filter: drop-shadow(9px 5px 10px #000);
+    `;

@@ -37,3 +37,10 @@ export const SeachButton = styled.button`
     margin-left: 5px;
 `;
 
+export const SeachText = styled.p`
+    color: gray;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px pink;
+`;
+

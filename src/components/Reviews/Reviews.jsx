@@ -11,7 +11,7 @@ function Reviews() {
     const [review, setReview] = useState(null);
     useEffect(() => {
         getReviewMovie(id)?.then(setReview);
-    }, [id, review?.length]);
+    }, [id]);
 
     return (
         <ReviewWrap>
