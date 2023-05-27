@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const CastWraper = styled.div`
     margin-top: 40px;
+    margin-bottom: 40px;
 `;
 
 export const CastUl = styled.ul`

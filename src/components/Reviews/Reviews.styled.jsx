@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const ReviewWrap= styled.div`
     margin-top: 40px;
     display: block;
+    margin-bottom: 40px;
 `;
 
 export const ReviewUL= styled.ul`
